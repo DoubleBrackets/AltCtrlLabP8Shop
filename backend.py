@@ -5,24 +5,40 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import requests
 
-url = 'http://ec2-3-145-172-234.us-east-2.compute.amazonaws.com:8080'
+# API is unsecured right now (yeah....) so use env variables on machine
+# On windows set with 'set GDAC_DISCORD_BOT_API_URL=[URL]' in terminal
+# On linux set with 
+gdac_discord_bot_api_url = os.environ['GDAC_DISCORD_BOT_API_URL']
+lab_status_filename = 'lab_status.txt'
 sep = os.sep
 
-class MyHandler(FileSystemEventHandler):
+class FileChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
         print(f'event type: {event.event_type}  path : {event.src_path}')
         filename = event.src_path.split(sep)[-1]
         path = event.src_path
-        if(filename == 'labopen.txt'):
-            print("file has been modified")
-            new_state = open(path, 'r').read().strip()
-            print("Setting room to " + new_state)
-            body = {'setRoomState': int(new_state)}
-            response = requests.post(url, json = body)
-            print(response.text)
+
+        # If the lab status changes, update discord bot status
+        if(filename == lab_status_filename):
+            self.update_lab_status_discord_bot(path)
+
+    def update_lab_status_discord_bot(status_file_path):
+        print("lab open file has been modified")
+
+        new_state = open(status_file_path, 'r').read().strip()
+
+        print("Setting room to " + new_state)
+
+        # will need to match API of the gdac discord bot
+        body = {'setRoomState': int(new_state)}
+        response = requests.post(gdac_discord_bot_api_url, json = body)
+
+        print(response.text)
+
 
 if __name__ == "__main__":
-    event_handler = MyHandler()
+    # Watchdog observer for file changes
+    event_handler = FileChangeHandler()
     observer = Observer()
     observer.schedule(event_handler, path='.', recursive=False)
     observer.start()
@@ -32,4 +48,5 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
+
     observer.join()
