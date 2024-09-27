@@ -1,2 +1,2 @@
-# AltCtrlLabP8Shop
-A funky pico8-based control panel for the Alt-Ctrl Lab at Davis
+# Alt-Ctrl Lab Pico-8 Console
+A Pico-8 Console/Arcade for the Alt-Ctrl Lab at Davis
