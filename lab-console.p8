@@ -351,7 +351,7 @@ function redraw_arcade_menu()
   rect(0, 15, 127, 27, 8)
 
   -- desc
-  print(selected_game.desc, 4, 31, 7)
+  print(wrap_text(selected_game.desc, 120), 4, 31, 7)
 
   -- game list
   local space_per_entry = 8

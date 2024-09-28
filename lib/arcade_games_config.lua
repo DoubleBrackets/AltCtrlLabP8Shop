@@ -19,8 +19,8 @@ arcade_games_list = {
     listing(
         "insatiable.p8",
         "insatiable",
-        "camden pettijohn & grant gelardi",
-        "dark lord allowen the vampire \nhas awoken from a deep slumber \nin an era void of humans. \nNo longer will he have to fear\nthe stakes of commoners but a \nthreat is still posed against \nhis life: the instability of \nhis own appetite."
+        "camden pettijohn, grant gelardi",
+        "dark lord allowen the vampire has awoken from a deep slumber in an era void of humans. no longer will he have to fear the stakes of commoners but a threat is still posed against his life: the instability of his own appetite."
     ),
     listing(
         "flower.p8",
@@ -44,6 +44,6 @@ arcade_games_list = {
         "ferrous_fight.p8",
         "ferrous fight",
         "jasper, jeren, jimmy, kaoushik",
-        "a fully featured tower defense \ngame with a unique mechanic: \nall 6 towers can be directly \ncontrolled with special \nbehavior. play as the rogue \nai 'blitz' as they awaken from \na facility, travelling the land \nto defeat the milit empire."
+        "a fully featured tower defense game with a unique mechanic: all 6 towers can be directly controlled with special behavior. play as the rogue ai 'blitz' as they awaken from a facility, travelling the land to defeat the milit empire."
     )
 }

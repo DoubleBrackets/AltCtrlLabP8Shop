@@ -39,6 +39,28 @@ function print_width(s)
     return w + #s - 1
 end
 
+function wrap_text(s, width)
+    local line = ""
+    local words = split(s, " ")
+    local final = ""
+
+    for i = 1, #words do
+        local word = words[i]
+        local new_line = line .. word
+
+        if print_width(new_line) > width then
+            final = final .. line .. "\n"
+            line = word .. " "
+        else
+            line = new_line .. " "
+        end
+    end
+
+    final = final .. line
+
+    return final
+end
+
 function print_centered(s, x, y, c) print(s, x - print_width(s) / 2, y, c) end
 
 function btn_prompt(btn, text, x, y, c1, c2)
