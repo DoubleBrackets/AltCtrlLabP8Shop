@@ -45,5 +45,11 @@ arcade_games_list = {
         "ferrous fight",
         "jasper, jeren, jimmy, kaoushik",
         "a fully featured tower defense game with a unique mechanic: all 6 towers can be directly controlled with special behavior. play as the rogue ai 'blitz' as they awaken from a facility, travelling the land to defeat the milit empire."
+    ),
+    listing(
+        "ninja_run.p8",
+        "ninja run",
+        "alexa, aria, arthur, jimmy, jordan, tyler, diana",
+        "oh no! your house has been overrun with ninjas, and it's up to you to protect it!"
     )
 }

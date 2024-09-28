@@ -347,15 +347,15 @@ function redraw_arcade_menu()
   rect(15, 1, 127, 15, 6)
 
   -- credits
-  ?selected_game.credits, 4, 19, 6
-  rect(0, 15, 127, 27, 8)
+  print(wrap_text(selected_game.credits, 120), 4, 18, 6)
+  rect(0, 15, 127, 31, 8)
 
   -- desc
-  print(wrap_text(selected_game.desc, 120), 4, 31, 7)
+  print(wrap_text(selected_game.desc, 120), 4, 34, 7)
 
   -- game list
-  local space_per_entry = 8
-  local list_section_y = 95
+  local space_per_entry = 7
+  local list_section_y = 98
 
   -- frame
   rect(0, 0, 15, 15, 8)
