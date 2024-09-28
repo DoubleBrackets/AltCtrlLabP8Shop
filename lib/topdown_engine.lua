@@ -58,6 +58,11 @@ function register_interactable(interactable)
     add(interactables, interactable)
 end
 
+function draw_interact_box()
+    rectfill(0, 95, 127, 127, 0)
+    rect(0, 95, 127, 127, 7)
+end
+
 function update_interactables(body, interact_btn_pressed)
     target_tile = v_add(body.pos, body.facing)
 
@@ -71,6 +76,7 @@ function update_interactables(body, interact_btn_pressed)
 
         if in_range then
             if interactable.on_while_facing then
+                draw_interact_box()
                 interactable.on_while_facing()
             end
 

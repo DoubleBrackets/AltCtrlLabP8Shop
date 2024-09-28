@@ -107,18 +107,11 @@ function update_lab_open()
 
   update_player()
 
-  draw_info_ui()
-
   update_interactables(p.body, button_states[btn_ids.primary].pressed)
 
   if debug then
     debug_draw_interactables(main_cam)
   end
-end
-
-function draw_info_ui()
-  rectfill(0, 95, 127, 127, 0)
-  rect(0, 95, 127, 127, 9)
 end
 
 -->8
@@ -184,7 +177,7 @@ function init_lever()
 end
 
 function while_lever_in_range()
-  btn_prompt_centered("🅾️", "sleep", 64, 108, 8, 7)
+  btn_prompt_centered("🅾️", "close lab", 64, 108, 8, 7)
 end
 
 function save_player_pos()
@@ -201,15 +194,19 @@ function update_sleep_screen()
   if button_states[btn_ids.primary].pressed then
     switch_to_lab_main_state()
   end
+
+  if button_states[btn_ids.secondary].pressed then
+    switch_to_lab_main_state()
+  end
 end
 
 function switch_to_sleep_screen()
   cls(0)
 
-  spr(32, 55, 54, 2, 2)
-  ?"alt-ctrl lab is closed", 20, 30, 7
-  btn_prompt_centered("🅾️", "open lab", 64, 90, 8, 7)
-  rect(0, 0, 127, 127, 7)
+  -- spr(32, 55, 54, 2, 2)
+  print_centered("alt-ctrl lab is closed", 64, 40, 5)
+  btn_prompt_centered("🅾️", "open lab", 64, 84, 5, 5)
+  -- rect(0, 0, 127, 127, 7)
 
   close_lab_remote()
   current_game_state = game_states.sleeping
@@ -235,15 +232,19 @@ function update_idle_screen()
   if button_states[btn_ids.primary].pressed then
     switch_to_lab_main_state()
   end
+
+  if button_states[btn_ids.secondary].pressed then
+    switch_to_lab_main_state()
+  end
 end
 
 function switch_to_idle_screen()
-  cls(12)
+  cls(0)
 
-  map(40, 0, 0, 0, 16, 16)
+  -- map(40, 0, 0, 0, 16, 16)
 
-  print_centered("idling... lab is still open.", 64, 30, 1)
-  btn_prompt_centered("🅾️", "return", 64, 90, 8, 1)
+  print_centered("idling... lab is still open", 64, 40, 5)
+  btn_prompt_centered("🅾️", "return", 64, 84, 5, 5)
 
   current_game_state = game_states.idling
 end
