@@ -14,6 +14,7 @@ function load_arcade_game(game_index)
     load(arcade_games_path .. game.path, "exit arcade")
 end
 
+-- add new arcade games here
 arcade_games_list = {
     listing(
         "insatiable.p8",
@@ -38,5 +39,11 @@ arcade_games_list = {
         "dynam8",
         "camden pettijohn",
         "prototype"
+    ),
+    listing(
+        "ferrous_fight.p8",
+        "ferrous fight",
+        "jasper, jeren, jimmy, kaoushik",
+        "a fully featured tower defense \ngame with a unique mechanic: \nall 6 towers can be directly \ncontrolled with special \nbehavior. play as the rogue \nai 'blitz' as they awaken from \na facility, travelling the land \nto defeat the milit empire."
     )
 }
