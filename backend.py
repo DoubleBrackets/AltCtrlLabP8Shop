@@ -7,7 +7,7 @@ import requests
 import sys
 
 # API is unsecured right now (yeah....) so don't include it in the code
-gdac_discord_bot_api_url = ""
+gdac_discord_bot_api_url = os.environ.get('GDAC_DISCORD_BOT_API_URL')
 lab_status_filename = 'lab_status.txt'
 sep = os.sep
 
@@ -38,11 +38,9 @@ class FileChangeHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python backend.py <gdac_discord_bot_api_url>")
+    if gdac_discord_bot_api_url is None:
+        print("Please set the GDAC_DISCORD_BOT_API_URL environment variable")
         sys.exit(1)
-
-    gdac_discord_bot_api_url = sys.argv[1]
     
     print("Starting file watcher")
     # Watchdog observer for file changes
