@@ -25,3 +25,11 @@ echo "p8 console backend started on screen: $BACKEND_SCREEN_NAME"
 
 # run pico-8, using our custom home directory and console startup cart
 $PICO_8_PATH -home $HOME_DIR -run $STARTUP_CART
+
+echo "=================="
+echo "Alt-Ctrl-Lab Pico8 Console exited"
+echo "type 'exit' to logout, and log back in with 'p8_console_user' to restart"
+echo "=================="
+
+# kill backend screen and process
+screen -X -S $BACKEND_SCREEN_NAME quit
