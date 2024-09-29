@@ -20,22 +20,30 @@ echo "Using home dir: $HOME_DIR"
 
 mkdir -p $HOME_DIR
 
+echo "Starting backend script..."
 # kill backend screen if one is running
 screen -X -S $BACKEND_SCREEN_NAME quit
 
 # start backend screen
 screen -dmS $BACKEND_SCREEN_NAME python $BACKEND_SCRIPT_PATH
 
-echo "p8 console backend started on screen: $BACKEND_SCREEN_NAME"
+echo "Backend script started on screen: $BACKEND_SCREEN_NAME"
 
-# run pico-8, using our custom home directory and console startup cart
-$PICO_8_PATH -home $HOME_DIR -run $STARTUP_CART
+while [ 1 ]
+do
+    # run pico-8, using our custom home directory and console startup cart
+    $PICO_8_PATH -home $HOME_DIR -run $STARTUP_CART
+
+    clear
+    TIMESTAMP=$(date)
+    echo 
+    echo -e "${CYAN}==================${NC}"
+    echo -e "Alt-Ctrl-Lab Pico-8 console has shut down ($TIMESTAMP)"
+    echo -e "${CYAN}Press Any Key to Restart${NC}"
+    echo -e "${CYAN}==================${NC}"
+    read -n 1 -s -r
+done
+
 
 # kill backend screen and process
 screen -X -S $BACKEND_SCREEN_NAME quit
-
-echo 
-echo -e "${CYAN}==================${NC}"
-echo -e "Alt-Ctrl-Lab Pico-8 console has shut down."
-echo -e "Type ${CYAN}exit${NC} to logout, then log back in with username ${CYAN}p8_console_user${NC} to restart"
-echo -e "${CYAN}==================${NC}"
