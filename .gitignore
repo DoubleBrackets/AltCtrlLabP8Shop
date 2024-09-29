@@ -1,3 +1,5 @@
 labopen.txt
 pico8-home/*
 !pico8-home/carts
+
+pico8-home/carts/**.txt

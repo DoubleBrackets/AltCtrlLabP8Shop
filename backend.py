@@ -8,7 +8,8 @@ import sys
 
 # API is unsecured right now (yeah....) so don't include it in the code
 gdac_discord_bot_api_url = os.environ.get('GDAC_DISCORD_BOT_API_URL')
-lab_status_filename = 'pico8-home/carts/lab_status.txt'
+observe_path = './pico8-home/carts'
+lab_status_filename = 'lab_status.txt'
 sep = os.sep
 
 class FileChangeHandler(FileSystemEventHandler):
@@ -46,7 +47,7 @@ if __name__ == "__main__":
     # Watchdog observer for file changes
     event_handler = FileChangeHandler()
     observer = Observer()
-    observer.schedule(event_handler, path='./interop', recursive=False)
+    observer.schedule(event_handler, path=observe_path, recursive=False)
     observer.start()
 
     try:
