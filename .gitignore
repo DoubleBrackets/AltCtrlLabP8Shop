@@ -1,5 +1,9 @@
 labopen.txt
+
+# pico-8 will generate config files and such in the home directory
 pico8-home/*
+# we want to track the carts, though
 !pico8-home/carts
 
+# we don't need to track files used by the carts for logging and interop
 pico8-home/carts/**.txt
