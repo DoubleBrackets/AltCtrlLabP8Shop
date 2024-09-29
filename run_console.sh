@@ -23,4 +23,5 @@ screen -dmS $BACKEND_SCREEN_NAME python $BACKEND_SCRIPT_PATH
 
 echo "p8 console backend started on screen: $BACKEND_SCREEN_NAME"
 
+# run pico-8, using our custom home directory and console startup cart
 $PICO_8_PATH -home $HOME_DIR -run $STARTUP_CART
