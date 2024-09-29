@@ -31,6 +31,9 @@ echo "Backend script started on screen: $BACKEND_SCREEN_NAME"
 
 while [ 1 ]
 do
+    # Update
+    git pull
+
     # run pico-8, using our custom home directory and console startup cart
     $PICO_8_PATH -home $HOME_DIR -run $STARTUP_CART
 
