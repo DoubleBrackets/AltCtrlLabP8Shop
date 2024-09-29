@@ -204,8 +204,8 @@ function switch_to_sleep_screen()
   cls(0)
 
   -- spr(32, 55, 54, 2, 2)
-  print_centered("alt-ctrl lab is closed", 64, 40, 5)
-  btn_prompt_centered("🅾️", "open lab", 64, 84, 5, 5)
+  print_centered("alt-ctrl lab is closed", 64, 40, 1)
+  btn_prompt_centered("🅾️", "open lab", 64, 84, 1, 1)
   -- rect(0, 0, 127, 127, 7)
 
   close_lab_remote()
@@ -243,8 +243,8 @@ function switch_to_idle_screen()
 
   -- map(40, 0, 0, 0, 16, 16)
 
-  print_centered("idling... lab is still open", 64, 40, 5)
-  btn_prompt_centered("🅾️", "return", 64, 84, 5, 5)
+  print_centered("idling... lab is still open", 64, 40, 1)
+  btn_prompt_centered("🅾️", "return", 64, 84, 1, 1)
 
   current_game_state = game_states.idling
 end
