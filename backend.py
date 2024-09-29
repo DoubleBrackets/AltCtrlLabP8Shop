@@ -8,7 +8,7 @@ import sys
 
 # API is unsecured right now (yeah....) so don't include it in the code
 gdac_discord_bot_api_url = os.environ.get('GDAC_DISCORD_BOT_API_URL')
-lab_status_filename = 'lab_status.txt'
+lab_status_filename = 'pico8-home/carts/lab_status.txt'
 sep = os.sep
 
 class FileChangeHandler(FileSystemEventHandler):

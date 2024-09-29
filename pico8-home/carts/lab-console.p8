@@ -3,13 +3,13 @@ version 41
 __lua__
 
 -- Game Loop
-#include ../lib/utils.lua
-#include ../lib/topdown_engine.lua
+#include ../../lib/utils.lua
+#include ../../lib/topdown_engine.lua
 
-#include ../lib/input_util.lua
+#include ../../lib/input_util.lua
 
-#include ../lib/open_lab_remote.lua
-#include ../lib/arcade_games_config.lua
+#include ../../lib/open_lab_remote.lua
+#include ../../lib/arcade_games_config.lua
 
 game_states = {
   sleeping = 1,

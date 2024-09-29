@@ -1,2 +1,3 @@
 labopen.txt
-pico-8
+pico8-home/*
+!pico8-home/carts
