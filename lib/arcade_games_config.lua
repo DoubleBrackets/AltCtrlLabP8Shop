@@ -55,7 +55,7 @@ arcade_games_list = {
     listing(
         "catfishing.p8",
         "catfishing",
-        "jeren, kaoushik, michael, nicholas, alex, Q-mii",
+        "jeren, kaoushik, michael, nicholas, alex, katie",
         "go fishing! sell your catch, upgrade your fishing pole, and complete the encyclopedia!"
     )
 }
