@@ -51,5 +51,11 @@ arcade_games_list = {
         "ninja run",
         "alexa, aria, arthur, jimmy, jordan, tyler, diana",
         "oh no! your house has been overrun with ninjas, and it's up to you to protect it!"
+    ),
+    listing(
+        "catfishing.p8",
+        "catfishing",
+        "jeren, kaoushik, michael, nicholas, alex, Q-mii",
+        "go fishing! sell your catch, upgrade your fishing pole, and complete the encyclopedia!"
     )
 }
