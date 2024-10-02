@@ -1,5 +1,5 @@
 pico-8 cartridge // http://www.pico-8.com
-version 34
+version 41
 __lua__
 --ninjarun! by alexa,aria,arthur
 --jimmy,jordan,tyler,and diana
@@ -86,7 +86,7 @@ function mk_plr(pos)
 	plr.current_animation=plr.animations.idle
 
 	plr.stats={
-		mvm=s2t("move_speed=90,accel=15,accel_air=10,jump_vel=0~-140,jump_count=1,jump_control_ratio=0.4,jump_margin=6,walljump_vel=235~-125,wallslide_vel=40,walljump_forgive=1,wallhang_frames=6,is_wall_hanging=false,wall_side=0"),
+		mvm=s2t("move_speed=90,accel=15,accel_air=10,jump_vel=0~-140,jump_count=1,jump_control_ratio=0.4,jump_margin=6,walljump_vel=235~-130,wallslide_vel=40,roll_forgive=5,roll_dir=0,roll_ready_frames=0,wallhang_frames=6,is_wall_hanging=false,wall_side=0"),
 		roll=s2t("off_cd=true,cd=0.55,duration=0.16,vel=255,dir=0,sfx=11,afimg_c=1"),
 		att=s2t("off_cd=true,cd=0.65,hit_cd=0.25,duration=0.09,h_vel=200,v_vel=240,d_vel=200,h_hitbox=23~11,v_hitbox=12~23,d_hitbox=12~12,swing_sfx=10,hit_sfx=9,p_color=10,s_color=7,streak_c=7") 
 	}
@@ -113,9 +113,16 @@ function plr_upd(plr)
 		perform_melee_att(plr, pb, p_att, input_x, input_y, {2,3})
 	end
 
-	if(get_inp_held("D") and can_roll(plr,p_roll,grounded) and input_x !=0)then
+	if input_x != 0 then
+		p_mvm.roll_ready_frames = p_mvm.roll_forgive
+		p_mvm.roll_dir = input_x
+	else
+		p_mvm.roll_ready_frames -= 1
+	end
+
+	if get_inp_held("D") and p_mvm.roll_ready_frames > 0 and can_roll(plr,p_roll,grounded) then
 		slow_time(0.05,0.4)
-		perform_roll(plr, pb, p_roll, input_x)
+		perform_roll(plr, pb, p_roll, p_mvm.roll_dir)
 	end
 
 	pb.drop_down=input_y > 0 and plr.state !=roll
@@ -180,8 +187,6 @@ function wall_slide_upd(actor, pb, a_mvm, input_x, input_y,grounded)
 		if(wallOnLeft or wallOnRight) then 
 			pb.velocity.y=min(pb.velocity.y,a_mvm.wallslide_vel)
 			a_mvm.wallhang_frames=0 
-			wall_jumpable()
-		elseif(a_mvm.wallhang_frames < a_mvm.walljump_forgive) then
 			wall_jumpable()
 		else
 			a_mvm.is_wall_hanging=false
@@ -649,7 +654,7 @@ end
 function save_time()
 	pause_time=true
 	if(type(low_time) !="number" or game_time < low_time) then
-		new_hs, low_time=true, game_time
+		new_hs, low_time=true, flr(game_time * 100)/100
 		dset(0,low_time)
 	end
 end
@@ -735,7 +740,7 @@ function can_jump(pb, a_mvm)
 end
 
 function pb_jump(pb, a_mvm, jump_vel)
-	a_mvm.wallhang_frames=a_mvm.walljump_forgive
+	a_mvm.wallhang_frames=6
 	a_mvm.jump_count +=1
 	pb.velocity.y=0
 	pb.velocity +=jump_vel
@@ -1354,7 +1359,8 @@ function _draw()
 	camera(m_cam.cam_x, m_cam.cam_y)
 	if(gme_st==gameplay) gameplay_draw()
 	if(gme_st==cutscene) cutscene_draw()
-	print("game time:\f9" .. game_time, m_cam.cam_x, m_cam.cam_y + 9,7)
+	local trunc_time = flr(game_time * 100) / 100
+	print("game time:\f9" .. trunc_time, m_cam.cam_x, m_cam.cam_y + 9,7)
 	print("best time:\f9" .. low_time, m_cam.cam_x, m_cam.cam_y + 1,new_hs and 11 or 7)
 	transition:draw()
 end
