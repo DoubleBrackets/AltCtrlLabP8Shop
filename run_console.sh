@@ -42,9 +42,9 @@ do
     echo 
     echo -e "${CYAN}==================${NC}"
     echo -e "Alt-Ctrl-Lab Pico-8 console has shut down ($TIMESTAMP)"
-    echo -e "${CYAN}Press Any Key to Restart${NC}"
+    echo -e "${CYAN}Restarting in 3 seconds...${NC}"
     echo -e "${CYAN}==================${NC}"
-    read -n 1 -s -r
+    sleep 3
 done
 
 
