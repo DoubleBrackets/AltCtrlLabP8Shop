@@ -10,6 +10,7 @@ att, default, roll, dead="att", "default", "roll", "dead"
 cutscene, gameplay="cutscene", "gameplay"
 melee, ranged, boss="melee", "ranged", "boss"
 enm_lyr=4
+game_time_displ,low_time_displ=0,0
 
 act={}
 
@@ -654,7 +655,7 @@ end
 function save_time()
 	pause_time=true
 	if(type(low_time) !="number" or game_time < low_time) then
-		new_hs, low_time=true, flr(game_time * 100)/100
+		new_hs, low_time=true, game_time
 		dset(0,low_time)
 	end
 end
@@ -1310,11 +1311,7 @@ end
 gme_st=nil
 
 time_scale, game_speed, FRAMERATE, current_frame, low_time=
-1,
-0.95,
-60,
-0,
-dget(0) !=0 and dget(0) or 'n/a'
+1,0.95,60,0,dget(0) !=0 and dget(0) or 'n/a'
 
 
 
@@ -1324,7 +1321,7 @@ function _init()
 	prev_time, current_time, delta_time, game_time=time(), time(), 1/FRAMERATE, 0
 	v_1, v_4, v_8=v(1,1), v(4,4), v(8,8)
 	reset_act_pbodies()
-	setup_input() 
+	poke(0x5f2d, 1|2|4)
 	init_scene_data()
 	load_scene(scene_data.ct_intro)
 end
@@ -1359,9 +1356,11 @@ function _draw()
 	camera(m_cam.cam_x, m_cam.cam_y)
 	if(gme_st==gameplay) gameplay_draw()
 	if(gme_st==cutscene) cutscene_draw()
-	local trunc_time = flr(game_time * 100) / 100
-	print("game time:\f9" .. trunc_time, m_cam.cam_x, m_cam.cam_y + 9,7)
-	print("best time:\f9" .. low_time, m_cam.cam_x, m_cam.cam_y + 1,new_hs and 11 or 7)
+
+	if(current_frame % 5 == 0) game_time_displ,low_time_displ = trunc(game_time),trunc(low_time)
+		
+	print("game time:\f9" .. game_time_displ, m_cam.cam_x, m_cam.cam_y + 9,7)
+	print("best time:\f9" .. low_time_displ, m_cam.cam_x, m_cam.cam_y + 1,new_hs and 11 or 7)
 	transition:draw()
 end
 
@@ -1861,10 +1860,6 @@ default_i_m={
 
 i_s=s2t("L=0,R=0,U=0,D=0,jump=0,att=0,tab=0,rspawn=0,mspawn=0")
 
-function setup_input()
-	poke(0x5f2d, 1|2|4)
-end
-
 function upd_input()
 	mouse_x=stat(32)
 	mouse_y=stat(33)
@@ -1967,6 +1962,12 @@ function slow_time(duration, scale)
 		duration,
 		function() time_scale=1 end
 	}, true)
+end
+
+function trunc(n)
+	local str = tostr(n)
+	local sep = split(str, ".", false)
+	return sub(str, 1, (#sep[1]) + 3)
 end
 
 __gfx__
