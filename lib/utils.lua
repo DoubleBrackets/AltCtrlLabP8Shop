@@ -39,6 +39,10 @@ function print_width(s)
     return w + #s - 1
 end
 
+function print_height(s)
+    return 6 * #split(s, "\n") - 1
+end
+
 function wrap_text(s, width)
     local line = ""
     local words = split(s, " ")

@@ -29,12 +29,6 @@ arcade_games_list = {
         "prototype"
     ),
     listing(
-        "moral_ai.p8",
-        "moral ai",
-        "camden pettijohn",
-        "prototype"
-    ),
-    listing(
         "dynam8.p8",
         "dynam8",
         "camden pettijohn",
@@ -57,5 +51,17 @@ arcade_games_list = {
         "catfishing",
         "jeren, kaoushik, michael, nicholas, alex, katie",
         "go fishing! sell your catch, upgrade your fishing pole, and complete the encyclopedia!"
-    )
+    ),
+    listing(
+        "dragonlair.p8",
+        "dragon lair",
+        "aron m, brandon h, katlyn c, monse a",
+        "classic top-down rpg where the player finds hidden keys to escape the dragons lair!"
+    ),
+    listing(
+        "deepcitydetective.p8",
+        "deep city detective",
+        "nathan, aron, makai, katlyn, brandon, yiyu, ziyu, bohua, julia",
+        "a tale of mystery and vengeance!"
+    ),
 }
