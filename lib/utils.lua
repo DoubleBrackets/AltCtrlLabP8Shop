@@ -43,24 +43,24 @@ function print_height(s)
     return 6 * #split(s, "\n") - 1
 end
 
-function wrap_text(s, width)
+function wrap_text(s, width, separator)
     local line = ""
-    local words = split(s, " ")
+    local words = split(s, separator)
     local final = ""
 
     for i = 1, #words do
         local word = words[i]
-        local new_line = line .. word
+        local c_line = line .. word
 
-        if print_width(new_line) > width then
+        if print_width(c_line) > width then
             final = final .. line .. "\n"
-            line = word .. " "
+            line = word .. separator
         else
-            line = new_line .. " "
+            line = c_line .. separator
         end
     end
 
-    final = final .. line
+    final = final .. sub(line, 1, #line - 1)
 
     return final
 end
