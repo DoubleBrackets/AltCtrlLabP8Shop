@@ -62,6 +62,6 @@ arcade_games_list = {
         "deepcitydetective.p8",
         "deep city detective",
         "nathan, aron, makai, katlyn, brandon, yiyu, ziyu, bohua, julia",
-        "a tale of mystery and vengeance!"
+        "a point-and-click adventure that follows detective scott easton who is dispatched to investigate a murder in the market district. however, not everything about the crime is what is it seems..."
     ),
 }
