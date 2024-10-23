@@ -19,8 +19,6 @@ function v_distsq(a, b) return v_magsq(v_sub(b, a)) end
 function v_dist(a, b) return sqrt(v_distsq(a, b)) end
 function v_norm(v) return v_div(v, v_mag(v)) end
 
-function v_zero() return vector(0, 0) end
-
 -- text utils
 
 -- taken from @dredds https://www.lexaloffle.com/bbs/?tid=34512
