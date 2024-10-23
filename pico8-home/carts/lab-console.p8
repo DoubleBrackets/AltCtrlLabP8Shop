@@ -103,7 +103,7 @@ end
 function update_lab_open()
   cls(0)
 
-  draw_map(main_cam, 0, 0, v_zero(), 25, 25)
+  draw_map(main_cam, 0, 0, vector(), 25, 25)
 
   update_player()
 
@@ -120,7 +120,7 @@ end
 p_walk_anim = create_anim({ 0, 2 }, 4)
 
 p = {
-  body = topdown_body(v_zero(), vector(1, 1)),
+  body = topdown_body(vector(), vector(1, 1)),
   spr_offset = vector(-4, -8),
   speed = 1,
   vel = vector(0, 0),
@@ -139,7 +139,7 @@ function load_player_pos()
 end
 
 function update_player()
-  local input_v = v_zero()
+  local input_v = vector()
 
   if button_states[btn_ids.left].pressed then input_v.x -= 1 end
   if button_states[btn_ids.right].pressed then input_v.x += 1 end
